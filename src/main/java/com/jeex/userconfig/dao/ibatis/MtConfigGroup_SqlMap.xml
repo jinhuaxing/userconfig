@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="MtConfigGroup">
+	<select id="get" resultClass="com.jeex.userconfig.impl.Group"
+		parameterClass="java.lang.String">
+		select groupId, name, description
+		from MT_CONFIG_GROUP where groupId=#groupId#
+	</select>
+
+	<insert id="insert">
+		insert into MT_CONFIG_GROUP (groupId, name, description)
+		values (#groupId#, #name#, #description#)
+	</insert>
+
+	<update id="update">
+		update MT_CONFIG_GROUP set name=#name#, description=#description# where
+		groupId=#groupId#
+	</update>
+
+</sqlMap>

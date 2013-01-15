@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="MtConfigParam">
+
+	<select id="getByGroupId" parameterClass="java.lang.String"
+		resultClass="com.jeex.userconfig.impl.Parameter">
+		select groupId, name, descriptiveName, description, defaultValue, value,
+		readonly
+		from MT_CONFIG_PARAM where groupId=#groupId#
+	</select>
+
+	<select id="get" resultClass="com.jeex.userconfig.impl.Parameter">
+		select groupId, name, descriptiveName, description, defaultValue, value,
+		readonly
+		from MT_CONFIG_PARAM where groupId=#groupId# and name=#name#
+	</select>
+
+	<insert id="insert" parameterClass="com.jeex.userconfig.impl.Parameter">
+		insert into MT_CONFIG_PARAM (groupId, name, descriptiveName,
+		description, defaultValue, value, readonly)
+		values (#groupId#, #name#, #descriptiveName#, #description#, #defaultValue#,
+		#value#, #readonly#)
+	</insert>
+
+	<delete id="deleteByGroupId" parameterClass="java.lang.String">
+		delete from MT_CONFIG_PARAM where groupId=#groupId#
+	</delete>
+
+	<update id="updateValue" parameterClass="com.jeex.userconfig.impl.Parameter">
+		update MT_CONFIG_PARAM set value=#value# where groupId=#groupId# and
+		name=#name#
+	</update>
+
+	<update id="update" parameterClass="com.jeex.userconfig.impl.Parameter">
+		update MT_CONFIG_PARAM
+		<dynamic prepend="set">
+			<isNotNull property="descriptiveName" prepend=",">
+				descriptiveName=#descriptiveName#
+			</isNotNull>
+			<isNotNull property="description" prepend=",">
+				description=#description#
+			</isNotNull>
+			<isNotNull property="defaultValue" prepend=",">
+				defaultValue=#defaultValue#
+			</isNotNull>
+			<isNotNull property="value" prepend=",">
+				value=#value#
+			</isNotNull>
+			<isNotNull property="readonly" prepend=",">
+				readonly=#readonly#
+			</isNotNull>
+		</dynamic>
+		where groupId=#groupId# and name=#name#
+	</update>
+</sqlMap>
