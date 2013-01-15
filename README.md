@@ -1,5 +1,9 @@
-An utility component which reads the configurable parameters (or properties) from database, and injects the values to objects (POJO) that define some of their parameters are configurable, through annotations.
+User Configuration Support
 =============================
+An utility component which reads the configurable parameters (or properties) from database, 
+and injects the values to objects (POJO) that define some of their parameters are configurable, 
+through annotations.
+
 Here is an example:
 <pre><code>
 class A {
